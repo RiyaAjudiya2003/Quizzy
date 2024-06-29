@@ -1,0 +1,100 @@
+{% extends 'header.html' %}
+{% block content %}
+<section class="section" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+   <div class="container">
+     <div class="row">
+         <div class="col-lg-12">
+              <div class="title text-center">
+					<h2> Quiz<span class="color"> Result</span></h2>
+					<div class="border"></div>
+
+                  {{session['answers']}}
+
+
+                  {% set list2 = session['answers'].split(',') %}
+                  {% set list1 = session['question_id'].split(',') %}
+
+              </div>
+         </div>
+     </div>
+     <div class="row">
+         <div class="col-lg-12">
+            <center><div class="circular-progress" data-inner-circle-color="lightgrey" data-percentage="80" data-progress-color="skyblue" data-bg-color="black">
+            <div class="inner-circle"></div>
+            <p class="percentage">0%</p>
+            </div></center>
+        <br>
+
+        <center><a href="" class="btn btn-primary btn-rounded btn-fw btn-sm" style="border-radius:25px;font-size:13px">{{session["rightans"]}}<br>Correct Answer</a>
+        <a href="" class="btn btn-primary btn-rounded btn-fw btn-sm" style="border-radius:25px;font-size:13px">{{session["wrongans"]}}<br>Incorrect Answer</a>
+        {% set a =  10 - (session['rightans'] + session['wrongans'])  %}
+         <a href="" class="btn btn-primary btn-rounded btn-fw btn-sm" style="border-radius:25px;font-size:13px">  {{a}} <br> Skipped Question</a><br><br>
+         <a href="{{url_for('home')}}" class="btn btn-primary btn-rounded btn-fw btn-sm" style="border-radius:25px;font-size:13px">Back to Home</a></center><br><br>
+        </div>
+     </div><br><br>
+         <div class="title text-center">
+             <h2> Summarize<span class="color"> Quiz</span></h2>
+             <div class="border"></div>
+         </div>
+
+
+             {% for row in data %}
+
+                <h4><b>{{row.2}}</b></h4>
+                 {% if row.7=='a': %}<b style='color:green'>A. {{row.3}}</b>{% else %}<b>A. {{row.3}}</b>{% endif %}<br>
+                 {% if row.7=='b': %}<b style='color:green'>B. {{row.4}}</b>{% else %}<b>B. {{row.4}}</b>{% endif %}<br>
+                 {% if row.7=='c': %}<b style='color:green'>C. {{row.5}}</b>{% else %}<b>C. {{row.5}}</b>{% endif %}<br>
+                 {% if row.7=='d': %}<b style='color:green'>D. {{row.6}}</b>{% else %}<b>D. {{row.6}}</b>{% endif %}
+
+                {% for i in range(1,11) %}
+
+                   <p style="color:white">
+                   {% if list1[i] == (row.0|string): %}
+                       You selected option {{list2[i-1]}}
+
+                   {% endif %}
+
+                   </p>
+               {% endfor %}
+
+             {% endfor %}
+<script>
+const circularProgress = document.querySelectorAll(".circular-progress");
+Array.from(circularProgress).forEach((progressBar) => {
+  const progressValue = progressBar.querySelector(".percentage");
+  const innerCircle = progressBar.querySelector(".inner-circle");
+  let startValue = 0;
+  let endValue = 0;
+  <!--    endValue = Number(progressBar.getAttribute("data-percentage")),-->
+        endValue = ({{session["rightans"]}} *100) / 10;
+    speed = 50,
+    progressColor = progressBar.getAttribute("data-progress-color");
+
+
+  const progress = setInterval(() => {
+   if(endValue!=0)
+    {
+    startValue++;
+    }
+    progressValue.textContent = `${startValue}%`;
+    progressValue.style.color = `black`;
+
+    innerCircle.style.backgroundColor = `${progressBar.getAttribute(
+      "data-inner-circle-color"
+    )}`;
+
+    progressBar.style.background = `conic-gradient(${progressColor} ${
+      startValue * 3.6
+    }deg,${progressBar.getAttribute("data-bg-color")} 0deg)`;
+    if(endValue==0)
+    {
+    clearInterval(progress);
+    }
+    else if (startValue === endValue) {
+      clearInterval(progress);
+    }
+  }, speed);
+});
+  </script>
+
+{% endblock %}

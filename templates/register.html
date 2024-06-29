@@ -1,0 +1,47 @@
+{% extends 'header.html' %}
+{% block content %}
+<section id="contact-us" class="contact-us section-bg" >
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="title text-center wow fadeIn" data-wow-duration="500ms">
+					<h2> <span class="color">Register</span></h2>
+					<div class="border"></div>
+				</div>
+   			</div>
+			<div class="contact-form col-lg-6 mt-4 mt-lg-0 wow fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
+				<form id="contact-form" method="post" action="/register" role="form"  class="col-lg-11 offset-lg-7">
+					<div class="form-group">
+						<input type="text" placeholder="First Name" class="form-control" name="fnm" id="fnm" required>
+					</div>
+					<div class="form-group">
+						<input type="text" placeholder="Last Name" class="form-control" name="lnm" id="lnm" required>
+					</div>
+                    <div class="form-group">
+						<input type="text" placeholder="Email" class="form-control" name="email" id="email" required>
+					</div>
+                    <div class="form-group">
+						<input type="password" placeholder="Password" class="form-control" name="password" id="password" required>
+					</div>
+					<div id="cf-submit">
+						<input type="submit" id="contact-submit" class="btn1 btn-transparent" value="Register">
+					</div>
+				</form>
+			</div>
+			</div>
+		</div> <!-- end row -->
+	</div> <!-- end container -->
+</section> <!-- end section -->
+<footer id="footer" class="bg-one">
+	<div class="container">
+		<div class="row wow fadeInUp" data-wow-duration="500ms">
+			<div class="col-lg-12"><br>
+				<div class="copyright text-center">
+					<p class="mt-3">
+						 Developed by Riya Ajudiya</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+{% endblock %}

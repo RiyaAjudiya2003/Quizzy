@@ -1,0 +1,63 @@
+{% extends 'admin/header.html' %}
+{% block content %}
+<div class="main-panel">
+ <div class="content-wrapper">
+  <div class="row">
+   <div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+     <div class="card-body">
+      <h4 class="card-title">View Question</h4>
+        <div class="table-responsive"><br>
+          <form method="post" action="/viewquestion">
+            <table style="width:330px">
+              <tr>
+                <td>
+                  <select name="list1" class="form-control" style="width:250px">
+                    {% for row in cat %}
+                      {% if row.0 ==data.1: %}
+                        <option value="{{row.0}}" selected>{{row.1}}</option>
+                       {% else :%}
+                        <option value="{{row.0}}">{{row.1}}</option>
+                      {% endif %}
+                    {% endfor %}
+                  </select>
+                </td>
+                <td>
+                  <button type="submit" class="btn btn-primary btn-rounded btn-fw btn-sm" style="border-radius:6px">View</button><br></td>
+              </tr>
+            </table><br>
+          </form>
+           <table class="table table-hover">
+             <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Question</th>
+                  <th>Option A</th>
+                  <th>Option B</th>
+                  <th>Option C</th>
+                  <th>Option D</th>
+                  <th>Answer</th>
+                  <th>Action</th>
+                </tr>
+             </thead>
+             <tbody>
+              {% for row in data %}
+                <tr>
+                  <td>{{row.0}}</td>
+                  <td>{{row.2}}</td>
+                  <td>{{row.3}}</td>
+                  <td>{{row.4}}</td>
+                  <td>{{row.5}}</td>
+                  <td>{{row.6}}</td>
+                  <td>{{row.7}}</td>
+                  <td>
+                    <a href="{{ url_for('editquestion', id = row.0) }}" class="btn btn-primary btn-rounded btn-fw btn-sm">Edit</a>
+                    <a href="{{ url_for('delete_question', id = row.0) }}" class="btn btn-danger btn-sm">Delete</a>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+{% endblock %}

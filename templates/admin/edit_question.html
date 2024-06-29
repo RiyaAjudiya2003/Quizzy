@@ -1,0 +1,58 @@
+{% extends 'admin/header.html' %}
+{% block content %}
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="row">
+      <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Edit Question</h4>
+              <form class="forms-sample" action="{{ url_for('editquestion',id=data.0)}}" method="post">
+                <div class="form-group">
+                  <input type="hidden" class="form-control" id="id"  name="id" value="{{data.0}}">
+                  <select name="list1" class="form-control">
+                    {% for row in cat %}
+                      {% if row.0 ==data.1: %}
+                        <option value="{{row.0}}" selected>{{row.1}}</option>
+                       {% else :%}
+                        <option value="{{row.0}}">{{row.1}}</option>
+                      {% endif %}
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="form-group">
+                  <textarea class="form-control" name="question" id="exampleTextarea1" rows="4">{{data.2}}</textarea>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputUsername2">Option A</label>
+                  <input type="text" class="form-control" id="exampleInputUsername2"  name="A" value="{{data.3}}" required>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputUsername3">Option B</label>
+                  <input type="text" class="form-control" id="exampleInputUsername3"  name="B" value="{{data.4}}" required>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputUsername4">Option C</label>
+                  <input type="text" class="form-control" id="exampleInputUsername4"  name="C" value="{{data.5}}" required>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputUsername5">Option D</label>
+                  <input type="text" class="form-control" id="exampleInputUsername5"  name="D" value="{{data.6}}" required>
+                </div>
+                <div class="form-group">
+                  <select name="list2" class="form-control">
+                    <option value="ans">Answer</option>
+                    <option value="{{data.0}}" {% if data.7 =='a' %} selected {% endif %}>A</option>
+                    <option value="{{data.0}}" {% if data.7 =='b' %} selected {% endif %}>B</option>
+                    <option value="{{data.0}}" {% if data.7 =='c' %} selected {% endif %}>C</option>
+                    <option value="{{data.0}}" {% if data.7 =='d' %} selected {% endif %}>D</option>
+                  </select>
+                </div>
+                 <button type="submit" class="btn btn-primary me-2">Update</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+{% endblock %}

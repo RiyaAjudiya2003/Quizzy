@@ -1,0 +1,28 @@
+{% extends 'admin/header.html' %}
+{% block content %}
+<div class="main-panel">
+  <div class="content-wrapper">
+    <div class="row">
+      <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Edit category</h4>
+              <form class="forms-sample" action="{{ url_for('editcategory',id=data.0)}}" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                  <input type="hidden" name="id" value="{{data.0}}">
+                  <label for="name">Category Name</label>
+                  <input type="text" class="form-control" id="name"  name="name" value="{{data.1}}" required>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputUsername2">Category Image</label>
+                  <input type="file" class="form-control" id="exampleInputUsername2" name="file" value="{{data.2}}" required>
+                  <input type="hidden"  name="hidden" value="{{data.2}}">
+                </div>
+                  <button type="submit" class="btn btn-primary me-2">Update</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+{% endblock %}

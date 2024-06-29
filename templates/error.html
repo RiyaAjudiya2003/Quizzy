@@ -1,0 +1,23 @@
+{% extends 'header.html' %}
+{% block content %}
+
+<section class="section about-2 padding-0 bg-dark" id="about">
+	<div class="container-fluid p-5">
+		<div class="row no-gutters align-items-center">
+			<div class="col-lg-6">
+				<img class="img-fluid" src="static/images/two.jpg" alt="" style="height:400px;width:500px">
+			</div>
+			<div class="col-lg-6">
+				<div class="content-block">
+					<center> <a href="" class="btn btn-primary btn-rounded btn-fw btn-sm" style="border-radius:25px;font-size:23px">20 <br> Questions</a></center><br>
+					<center> <a href="{{ url_for('login')}}" class="btn btn-primary btn-rounded btn-fw btn-sm" style="border-radius:25px;font-size:25px">Login to Play Quiz</a></center>
+					<div class="row">
+
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+{% endblock %}

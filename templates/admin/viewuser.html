@@ -1,0 +1,39 @@
+{% extends 'admin/header.html' %}
+ {% block content %}
+<div class="main-panel">
+ <div class="content-wrapper">
+  <div class="row">
+   <div class="col-lg-12 grid-margin stretch-card">
+     <div class="card">
+       <div class="card-body">
+         <h4 class="card-title">View Registered User</h4>
+            <div class="table-responsive">
+                <form method="post" action="/viewuser">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for row in data %}
+                    <tr>
+                      <td>{{row.0}}</td>
+                      <td>{{row.1}}</td>
+                      <td>{{row.2}}</td>
+                      <td>{{row.3}}</td>
+                      <td>{{row.4}}</td>
+                       <td>
+                         <a href="{{ url_for('delete_user', id = row[0]) }}" class="btn btn-danger btn-sm">Delete</a></td>
+                    </tr>
+                  {% endfor %}
+                 </tbody>
+               </table>
+              </div>
+            </div>
+{% endblock %}

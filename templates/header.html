@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+
+    <meta charset="utf-8">
+	<title>Quizzy</title>
+
+  <!-- Mobile Specific Metas
+  ================================================== -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Parallax HTML5 Template">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="author" content="Themefisher">
+  <meta name="generator" content="Themefisher Meghna Template v1.0">
+
+  <!-- theme meta -->
+  <meta name="theme-name" content="meghna" />
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="static/images/favicon.png" />
+
+	<!-- CSS
+		================================================== -->
+	<!-- Fontawesome Icon font -->
+	<link rel="stylesheet" href="{{ url_for('static',filename='plugins/themefisher-font/style.css')}}">
+	<!-- bootstrap.min css -->
+	<link rel="stylesheet" href="{{ url_for('static',filename='plugins/bootstrap/bootstrap.min.css')}}">
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="{{ url_for('static',filename='plugins/animate-css/animate.css')}}">
+	<!-- Magnific popup css -->
+	<link rel="stylesheet" href="{{ url_for('static',filename='plugins/magnific-popup/dist/magnific-popup.css')}}">
+	<!-- Slick Carousel -->
+	<link rel="stylesheet" href="{{ url_for('static',filename='plugins/slick-carousel/slick.css')}}">
+	<link rel="stylesheet" href="{{ url_for('static',filename='plugins/slick-carousel/slick-theme.css')}}">
+	<!-- Main Stylesheet -->
+	<link rel="stylesheet" href="{{ url_for('static',filename='css/style.css')}}">
+
+
+</head>
+
+<body id="home" data-spy="scroll" data-target=".navbar-nav" data-offset="80">
+
+<header id="navigation" class="navigation">
+	<div class="container">
+		<div class="navbar-header w-100">
+			<nav class="navbar navbar-expand-lg navbar-dark px-0">
+      	       <img src="{{ url_for('static',filename='images/logo.png')}}" style="height:40px;width:90px">
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar01"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+		<div class="collapse navbar-collapse" id="navbar01">
+		  <ul class="navbar-nav navigation-menu ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('home')}}" id="hom">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('aboutus')}}" id="about">About us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('category')}}" id="cate">Category</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('contact')}}">Contact</a>
+          </li>
+          <li class="nav-item">
+			  {% if session['login']==True:%}
+			   <a class="nav-link" href="{{ url_for('logout')}}">Logout</a>
+			  {% else:%}
+			 <a class="nav-link" href="{{ url_for('login')}}">Login</a>
+			  {% endif %}
+          </li>
+        </ul>
+		  <b style="float:right;margin-right:13px;margin-left:13px;color:#57cbcc">
+		    {% if session['login']==True: %}
+		    Welcome {{session['name']}}
+	        {% endif %}</b>
+      </div>
+    </nav>
+  </div>
+</div>
+</header>
+
+{% block content %}
+{% endblock %}
+
+
+	<script src="{{ url_for('static',filename='plugins/jquery/jquery.min.js')}}"></script>
+	<!-- Bootstrap 3.1 -->
+	<script src="{{ url_for('static',filename='plugins/bootstrap/bootstrap.min.js')}}"></script>
+	<!-- Slick Carousel -->
+	<script src="{{ url_for('static',filename='plugins/slick-carousel/slick.min.js')}}"></script>
+	<!-- Portfolio Filtering -->
+	<script src="{{ url_for('static',filename='plugins/filterzr/jquery.filterizr.min.js')}}"></script>
+	<!-- Magnific popup -->
+	<script src="{{ url_for('static',filename='plugins/magnific-popup/dist/jquery.magnific-popup.min.js')}}"></script>
+
+	<!-- wow.min Script -->
+	<script src="{{ url_for('static',filename='plugins/wow/wow.min.js')}}"></script>
+	<!-- Custom js -->
+	<script src="{{ url_for('static',filename='js/script.js')}}"></script>
+
+	</body>
+</html>

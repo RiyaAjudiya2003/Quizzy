@@ -1,0 +1,38 @@
+{% extends 'admin/header.html' %}
+{% block content %}
+<div class="main-panel">
+ <div class="content-wrapper">
+  <div class="row">
+   <div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+     <div class="card-body">
+       <h4 class="card-title">View Category</h4>
+         <p class="card-description">
+           <a class="nav-link" href="{{ url_for('addcategory')}}">Add Category</a>
+         </p>
+         <div class="table-responsive">
+           <table class="table table-hover">
+             <thead>
+               <tr>
+                 <th>Id</th>
+                   <th>Category Name</th>
+                   <th>Category Photo</th>
+                   <th>Action</th>
+               </tr>
+             </thead>
+              <tbody>
+               {% for row in data %}
+                 <tr>
+                  <td>{{row.0}}</td>
+                  <td>{{row.1}}</td>
+                  <td><img  src="{{url_for('display_image',filename=row.2)}}" alt="" height="200px" width="200px"></td>
+                  <td>
+                   <a href="{{ url_for('editcategory',id=row.0)}}" class="btn btn-primary btn-rounded btn-fw btn-sm">Edit</a>
+                   <a href="{{ url_for('delete_cate', id = row[0]) }}" class="btn btn-danger btn-sm" >Delete</a></td>
+                 </tr>
+               {% endfor %}
+             </tbody>
+            </table>
+           </div>
+        </div>
+ {% endblock %}

@@ -1,0 +1,95 @@
+{% extends 'header.html' %}
+{% block content %}
+<section class="section" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+   <div class="container">
+      <div class="row">
+         <div class="col-lg-12">
+            {% if data: %}
+                <div class="title text-center">
+					  <h2> <span class="color">{{cat}}</span></h2>
+					<div class="border"></div>
+                </div>
+
+                  <p align="right">Question No. {{session["question"]}}/10</p>
+             {% for row in data %}
+                <h2><b>{{row.2}}</b></h2>
+
+                {% if session["ans"]=="True" or session["ans"]=="False": %}
+                    {% if session["soption"]=='a': %}
+                        <b style="color:white">A. {{row.3}}</b><br>
+                        B. {{row.4}}<br>
+                        C. {{row.5}}<br>
+                        D. {{row.6}}<br>
+                    {% endif %}
+                    {% if session["soption"]=='b': %}
+                        A. {{row.3}}<br>
+                        <b style="color:white">B. {{row.4}}</b><br>
+                        C. {{row.5}}<br>
+                        D. {{row.6}}<br>
+                    {% endif %}
+                    {% if session["soption"]=='c': %}
+                        A. {{row.3}}<br>
+                        B. {{row.4}}<br>
+                        <b style="color:white">C. {{row.5}}</b><br>
+                        D. {{row.6}}<br>
+                    {% endif %}
+                    {% if session["soption"]=='d' %}
+                        A. {{row.3}}<br>
+                        B. {{row.4}}<br>
+                        C. {{row.5}}<br>
+                        <b style="color:white">D. {{row.6}}</b><br>
+                    {% endif %}
+                         <br>
+                  {% else: %}
+                    <a href="{{ url_for('checkans',id=row.0,name=cat,aid='a')}}"> A. {{row.3}}</a><br>
+                    <a href="{{ url_for('checkans',id=row.0,name=cat,aid='b')}}"> B. {{row.4}}</a><br>
+                    <a href="{{ url_for('checkans',id=row.0,name=cat,aid='c')}}"> C. {{row.5}}</a><br>
+                    <a href="{{ url_for('checkans',id=row.0,name=cat,aid='d')}}"> D. {{row.6}}</a>
+                {% endif %}
+                        <center>
+                        {% if session["qid"]==row.0: %}
+                        <a href="{{ url_for('next',id=row.0,name=cat,tid=row.1)}}" class="btn btn-primary btn-rounded btn-fw btn-sm" style="border-radius:25px">Next</a></center>
+                        {% else: %}
+                        <a href="{{ url_for('next',id=row.0,name=cat,tid=row.1)}}" class="btn btn-primary btn-rounded btn-fw btn-sm" style="border-radius:25px">Next</a></center>
+                        {% endif %}
+                        </div>
+                            <ul class="list-inline mb-50">
+                            <li class="list-inline-item"></li>
+                             <li class="list-inline-item"></li>
+                             </ul>
+                                </div>
+             {% endfor %}
+            {% else: %}
+                 <section class="call-to-action section-sm bg-1 overly">
+	                 <div class="container">
+		            <div class="row">
+			        <div class="col-md-12 text-center">
+                        <h1 style="color:black">Thank You,<i><b> {{session['name']}}</b></i>
+                            <br>Your {{cat}} Quiz Test is Completed Here.</h1>
+                        <a href="{{ url_for('home')}}" class="btn btn-main">Home</a>
+				        <a href="{{ url_for('showresult')}}" class="btn btn-main">Show Result</a>
+			             </div>
+		                </div> <!-- End row -->
+	                 </div> <!-- End container -->
+                     </section> <!-- End section -->
+            {% endif %}
+   </div>
+
+</section>
+
+<footer id="footer" class="bg-one">
+	<div class="container">
+		<div class="row wow fadeInUp" data-wow-duration="500ms">
+			<div class="col-lg-12">
+				<div class="copyright text-center">
+					<p class="mt-3">
+						 Developed by Riya Ajudiya</p>
+				</div>
+			</div> <!-- end col lg 12 -->
+		</div> <!-- end row -->
+	</div> <!-- end container -->
+</footer> <!-- end footer -->
+
+
+
+{% endblock %}
